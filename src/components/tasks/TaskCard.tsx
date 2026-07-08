@@ -22,8 +22,8 @@ export default function TaskCard({
     }
   : undefined;
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority.toLowerCase()) {
+  const getPriorityColor = (priority?: string) => {
+    switch ((priority || "").toLowerCase()) {
       case "high":
         return "bg-red-100 text-red-600";
       case "medium":
@@ -62,7 +62,7 @@ export default function TaskCard({
           task.priority
         )}`}
       >
-        {task.priority.toUpperCase()}
+        {task.priority?.toUpperCase() || "LOW"}
       </span>
 
       {/* Tags */}

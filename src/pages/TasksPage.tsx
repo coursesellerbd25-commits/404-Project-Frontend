@@ -8,15 +8,12 @@ import TaskModal from "../components/tasks/TaskModal";
 import { useTaskStore } from "../store/useTaskStore";
 
 export default function TasksPage() {
-  const [showModal, setShowModal] = useTaskStore((state: any) => [
-    state.showModal,
-    state.setShowModal,
-  ]);
-
   const {
     tasks,
     selectedDate,
     setSelectedDate,
+    showModal,
+    setShowModal,
     fetchTasks,
   } = useTaskStore();
 

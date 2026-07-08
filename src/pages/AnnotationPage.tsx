@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import Navbar from "../components/Navbar";
 import ImageUploader from "../components/annotation/ImageUploader";
 import PolygonCanvas from "../components/annotation/PolygonCanvas";
 
@@ -70,6 +71,8 @@ export default function AnnotationPage() {
 
   return (
     <div className="p-6">
+      <Navbar />
+      
       <h1 className="text-3xl font-bold mb-6">
         Image Annotation
       </h1>

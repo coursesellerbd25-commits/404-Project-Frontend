@@ -2,7 +2,7 @@ import api from "./api";
 
 // Get all polygons for an image
 export const getPolygons = async (imageId: number) => {
-  const res = await api.get(`annotations/polygon/?image=${imageId}`);
+  const res = await api.get(`annotations/polygon/list/?image=${imageId}`);
   return res.data;
 };
 

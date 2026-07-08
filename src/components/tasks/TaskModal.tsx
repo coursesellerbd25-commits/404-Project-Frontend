@@ -26,8 +26,8 @@ export default function TaskModal({ onClose, refresh }: any) {
       await createTask(data);
       refresh();   // reload tasks
       onClose();   // close modal
-    } catch (err) {
-      console.error("Failed to create task", err);
+    } catch (err: any) {
+      console.error(err.response?.data);
     }
   };
 
