@@ -40,7 +40,7 @@ const Login = () => {
 
         {/* Logo */}
         <h1 className="text-6xl font-light tracking-widest">
-          4<span className="inline-block w-10 h-10 rounded-full bg-black mx-1 align-middle"></span>4
+          4<span className="mx-2 w-10 h-10 rounded-full bg-black"></span>4
         </h1>
 
         <h2 className="mt-8 text-4xl font-bold">
