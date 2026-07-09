@@ -10,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -27,38 +28,68 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white relative flex items-center justify-center px-4">
+    <div className={`min-h-screen relative flex items-center justify-center px-4 transition-colors duration-300 ${
+      darkMode
+      ? "bg-black text-white"
+      : "bg-white text-black"
+      }`}
+    >
 
       {/* Theme Toggle */}
       <button
-        className="absolute top-8 right-8 w-24 h-12 border border-black rounded-full flex items-center px-2"
+        type="button"
+        onClick={() => setDarkMode(!darkMode)}
+        className={`absolute top-8 right-8 w-24 h-12 rounded-full border transition-all duration-300 ${
+          darkMode ? "border-white" : "border-black"
+          }`}
       >
-        <div className="w-8 h-8 rounded-full bg-black"></div>
+        <div className={`absolute top-1 w-10 h-10 rounded-full transition-all duration-300 ${
+          darkMode
+            ? "right-1 bg-white"
+            : "left-1 bg-black"
+          }`}
+        />
       </button>
 
       <div className="w-full max-w-md text-center">
 
         {/* Logo */}
         <h1 className="flex items-end justify-center text-6xl font-light tracking-wide">
-          <span>4</span><span className="mx-1.5 relative -top-2 inline-block h-10 w-10 rounded-full bg-black"></span><span>4</span>
+          <span>4</span>
+            <span
+              className={`mx-1 relative -top-3 inline-block h-11 w-11 rounded-full ${
+                darkMode ? "bg-white" : "bg-black"
+              }`}
+            />
+          <span>4</span>
         </h1>
 
         <h2 className="mt-8 text-4xl font-bold">
           Welcome Back
         </h2>
 
-        <p className="mt-3 text-gray-600 text-lg">
+        <p className={`mt-3 text-lg ${
+            darkMode ? "text-gray-300" : "text-gray-600"
+          }`}
+        >
           Sign in to continue managing your tasks and annotations.
         </p>
 
         <form
           onSubmit={handleLogin}
-          className="mt-10 border border-black rounded-3xl p-10 text-left"
+          className={`mt-10 rounded-3xl p-10 text-left transition-colors duration-300 ${
+            darkMode
+              ? "border border-white bg-black"
+              : "border border-black bg-white"
+          }`}
         >
 
           {/* Email */}
 
-          <label className="block mb-2 text-lg">
+          <label className={`block mb-2 text-lg ${
+                  darkMode ? "text-white" : "text-black"
+                }`}
+          >
             Email Address
           </label>
 
@@ -68,12 +99,19 @@ const Login = () => {
             autoComplete="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full rounded-xl bg-slate-300 px-5 py-4 text-lg outline-none mb-8"
+            className={`w-full rounded-xl px-5 py-4 text-lg outline-none mb-8 transition-colors ${
+              darkMode
+                ? "bg-[#9EB2CF] text-white placeholder:text-gray-100"
+                : "bg-slate-300 text-black placeholder:text-white"
+            }`}
           />
 
           {/* Password */}
 
-          <label className="block mb-2 text-lg">
+          <label className={`block mb-2 text-lg ${
+                  darkMode ? "text-white" : "text-black"
+                  }`}
+          >
             Password
           </label>
 
@@ -85,7 +123,11 @@ const Login = () => {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-xl bg-slate-300 px-5 py-4 text-lg outline-none"
+              className={`w-full rounded-xl px-5 py-4 text-lg outline-none transition-colors ${
+                darkMode
+                  ? "bg-[#9EB2CF] text-white placeholder:text-gray-100"
+                  : "bg-slate-300 text-black placeholder:text-white"
+              }`}
             />
 
             <button
@@ -104,7 +146,11 @@ const Login = () => {
 
           <button
             type="button"
-            className="mt-8 text-lg hover:underline"
+            className={`mt-8 text-lg transition-colors ${
+              darkMode
+                ? "text-white hover:text-gray-300"
+                : "text-black hover:text-gray-600"
+            }`}
           >
             Forgot Password?
           </button>
@@ -116,7 +162,10 @@ const Login = () => {
             Login
           </button>
 
-          <p className="text-center mt-10 text-gray-600">
+          <p className={`text-center mt-10 ${
+            darkMode ? "text-gray-400" : "text-gray-600"
+          }`}
+          >
             © 2026 404 Project
           </p>
 
