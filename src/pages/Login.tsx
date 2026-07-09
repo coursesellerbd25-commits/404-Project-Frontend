@@ -39,8 +39,8 @@ const Login = () => {
       <div className="w-full max-w-md text-center">
 
         {/* Logo */}
-        <h1 className="text-6xl font-light tracking-widest">
-          4<span className="mx-2 w-10 h-10 rounded-full bg-black"></span>4
+        <h1 className="flex items-end justify-center text-6xl font-light tracking-wide">
+          <span>4</span><span className="mx-1.5 relative -top-2 inline-block h-10 w-10 rounded-full bg-black"></span><span>4</span>
         </h1>
 
         <h2 className="mt-8 text-4xl font-bold">
