@@ -57,7 +57,7 @@ const Login = () => {
         <h1 className="flex items-end justify-center text-6xl font-light tracking-wide">
           <span>4</span>
             <span
-              className={`mx-1 relative -top-3 inline-block h-11 w-11 rounded-full ${
+              className={`mx-1.5 relative -top-2 inline-block h-10 w-10 rounded-full ${
                 darkMode ? "bg-white" : "bg-black"
               }`}
             />
