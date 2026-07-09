@@ -20,18 +20,18 @@ export default function Column({
   const filtered = tasks.filter((task) => task.status === status);
 
   return (
-    <div ref={setNodeRef} className="bg-gray-100 rounded-xl p-4 min-h-[500px]">
+    <div ref={setNodeRef} className="w-full">
       {/* Column Title */}
-      <h2 className="font-bold text-lg mb-4">{title}</h2>
+      <h2 className="text-2xl font-bold mb-6">{title} ({filtered.length})</h2>
 
       {/* Empty State */}
       {filtered.length === 0 ? (
-        <div className="flex flex-col items-center justify-center h-60 text-center text-gray-400">
+        <div className="rounded-xl border-2 border-dashed border-gray-300 p-10 text-center text-gray-400">
           <p className="text-sm font-medium">No tasks here</p>
           <p className="text-xs mt-1">Add a task to get started</p>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="flex gap-6 overflow-x-auto pb-4">
           {filtered.map((task) => (
             <TaskCard
               key={task.id}

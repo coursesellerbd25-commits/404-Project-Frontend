@@ -32,35 +32,37 @@ export default function TasksPage() {
   }, [selectedDate]);
 
   return (
-    <div className="p-4">
+    <div className="max-w-7xl mx-auto px-8 py-8">
       <Navbar />
 
-      {/* Date selector and Add Task button */}
-      <div className="mt-4 flex flex-col md:flex-row justify-between items-center gap-4">
-        <DateSelector onChange={setSelectedDate} />
-
+      <div className="mt-12 flex justify-between items-start">
+        <div>
+          <h1 className="text-5xl font-bold">
+            Tasks
+          </h1>
+          <p className="mt-5 text-gray-500">
+            Manage your daily work efficiently.
+          </p>
+          </div>
+          <DateSelector onChange={setSelectedDate} />
+        </div>
+        <div className="mt-12">
+          <KanbanBoard tasks={tasks} refresh={() => selectedDate ? fetchTasks(selectedDate) : fetchTasks()} />
+        </div>
         <button
           onClick={() => setShowModal(true)}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition"
-        >
-          + Add Task
-        </button>
-      </div>
+          className="fixed bottom-10 right-10 h-16 w-16 rounded-full bg-yellow-300 text-4xl shadow-xl hover:scale-110 transition">
+            +
+          </button>
 
-      {/* Kanban Board */}
-      <div className="mt-6">
-        <KanbanBoard tasks={tasks} refresh={() => selectedDate ? fetchTasks(selectedDate) : fetchTasks()} />
-      </div>
-
-      {/* Add Task Modal */}
-      {showModal && (
-        <TaskModal
-          onClose={() => setShowModal(false)}
-          refresh={() =>
-            selectedDate ? fetchTasks(selectedDate) : fetchTasks()
-          }
-        />
-      )}
-    </div>
+          {showModal && (
+            <TaskModal
+              onClose={() => setShowModal(false)}
+              refresh={() =>
+              selectedDate ? fetchTasks(selectedDate) : fetchTasks()
+              }
+            />
+          )}
+        </div>
   );
 }
