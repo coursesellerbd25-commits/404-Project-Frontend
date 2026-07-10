@@ -50,7 +50,12 @@ export default function AnnotationPage() {
   }, [selectedImage]);
 
   return (
-  <div className="min-h-screen bg-white p-6">
+  <div className={`min-h-screen p-6 transition-colors duration-300 ${
+        darkMode
+          ? "bg-black"
+          : "bg-white"
+    }`}
+  >
 
     <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
