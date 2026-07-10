@@ -54,6 +54,13 @@ export default function DateSelector({ onChange }: Props) {
             selected={selected}
             onSelect={handleSelect}
             className="text-black"
+            classNames={{
+              month_caption: "text-black font-semibold",
+              weekdays: "text-black",
+              weekday: "text-black",
+              day: "text-black",
+              chevron: "fill-black",
+            }}
           />
         </div>
       )}
