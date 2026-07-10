@@ -32,27 +32,44 @@ export default function ImageUploader({
   };
 
   return (
-    <div className="bg-white rounded-xl shadow p-4">
-      <h2 className="text-lg font-semibold mb-4">
+    <div>
+      <h2 className="text-3xl font-bold mb-6">
         Upload Image
       </h2>
 
       <input
+        id="upload-image"
         type="file"
         accept="image/*"
-        onChange={(e) =>
-          setFile(e.target.files?.[0] || null)
-        }
-        className="mb-4 block w-full"
+        hidden
+        onChange={(e) => {
+          const selected = e.target.files?.[0];
+
+          if (!selected) return;
+
+          setFile(selected);
+        }}
       />
 
       <button
-        onClick={handleUpload}
-        disabled={!file || uploading}
-        className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400"
+        onClick={() =>
+          document
+            .getElementById("upload-image")
+            ?.click()
+        }
+        className="rounded-xl bg-cyan-400 px-8 py-3 text-white hover:bg-cyan-500"
       >
-        {uploading ? "Uploading..." : "Upload"}
+        Upload
       </button>
+
+      {file && (
+        <button
+          onClick={handleUpload}
+          className="ml-4 rounded-xl bg-blue-600 px-6 py-3 text-white"
+        >
+          {uploading ? "Uploading..." : "Confirm"}
+        </button>
+      )}
     </div>
   );
 }

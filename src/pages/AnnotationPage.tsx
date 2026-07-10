@@ -10,7 +10,6 @@ import { getPolygons } from "../services/polygon";
 export default function AnnotationPage() {
   const [images, setImages] = useState<any[]>([]);
   const [selectedImage, setSelectedImage] = useState<any>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [polygons, setPolygons] = useState<any[]>([]);
 
   const fetchImages = async () => {
@@ -21,7 +20,6 @@ export default function AnnotationPage() {
 
       // Select first image automatically
       if (data.length > 0 && !selectedImage) {
-        setCurrentIndex(0);
         setSelectedImage(data[0]);
       }
     } catch (err) {
@@ -39,26 +37,6 @@ export default function AnnotationPage() {
     }
   };
 
-  const nextImage = () => {
-    if (images.length === 0) return;
-
-    const nextIndex =
-        (currentIndex + 1) % images.length;
-
-    setCurrentIndex(nextIndex);
-    setSelectedImage(images[nextIndex]);
- };
-
-  const previousImage = () => {
-    if (images.length === 0) return;
-
-    const previousIndex =
-        (currentIndex - 1 + images.length) % images.length;
-
-    setCurrentIndex(previousIndex);
-    setSelectedImage(images[previousIndex]);
-  };
-
   useEffect(() => {
     fetchImages();
   }, []);
@@ -70,70 +48,111 @@ export default function AnnotationPage() {
   }, [selectedImage]);
 
   return (
-    <div className="p-6">
+    <div className="min-h-screen bg-white p-6">
       <Navbar />
-      
-      <h1 className="text-3xl font-bold mb-6">
-        Image Annotation
-      </h1>
 
-      {/* Upload */}
-      <ImageUploader refresh={fetchImages} />
+      <div className="mt-6 grid grid-cols-[260px_220px_1fr] gap-10">
 
-      {/* Image List */}
-      {images.length > 0 && (
-        <div className="mt-6 flex gap-3 flex-wrap">
-          {images.map((image) => (
-            <button
-              key={image.id}
-              onClick={() => {
-                const index = images.findIndex(
-                    (img) => img.id === image.id
-                );
-                setCurrentIndex(index);
-                setSelectedImage(image);
-             }}
-              className="border rounded-lg p-2"
-            >
-              <img
-                src={image.image}
-                alt={image.filename}
-                className="w-24 h-24 object-cover rounded"
-              />
-            </button>
-          ))}
+        {/* ================= Sidebar ================= */}
+        <div className="flex flex-col w-[260px]">
+
+          <h2 className="text-4xl font-bold mb-8">
+            Images
+          </h2>
+
+          <ImageUploader refresh={fetchImages} />
+
+          <div className="mt-8 flex-1 overflow-y-auto space-y-5 h-[720px]">
+
+            {images.map((image) => {
+
+              return (
+                <button
+                  key={image.id}
+                  onClick={() => {
+                    setSelectedImage(image);
+                  }}
+                  className={`relative w-full rounded-2xl p-5 bg-cyan-400 text-white text-left transition
+                  ${
+                    selectedImage?.id === image.id
+                      ? "border-2 border-black"
+                      : ""
+                  }`}
+                >
+                  <div className="flex items-center justify-center h-40">
+
+                    <span className="text-2xl font-medium">
+                      {image.filename}
+                    </span>
+
+                  </div>
+                </button>
+              );
+            })}
+
+          </div>
         </div>
-      )}
 
-      {/* Preview */}
-      {images.length > 0 && (
-        <div className="mt-6 flex items-center justify-center gap-6">
+        {/* ================= Toolbar ================= */}
 
-        <button
-            onClick={previousImage}
-            className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300"
-        >
-            ← Previous
-        </button>
+        <div className="space-y-5">
 
+          <button className="w-full h-14 bg-gray-200 rounded-md hover:bg-gray-300 transition text-left pl-8">
+            Draw
+          </button>
 
-        <span className="text-sm text-gray-600">
-            Image {currentIndex + 1} / {images.length}
-        </span>
+          <button className="w-full h-14 bg-gray-200 rounded-md hover:bg-gray-300 transition text-left pl-8">
+            Delete
+          </button>
 
-        <button
-            onClick={nextImage}
-            className="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300"
-        >
-            Next →
-        </button>
+          <button className="w-full h-14 bg-gray-200 rounded-md hover:bg-gray-300 transition text-left pl-8">
+            Save
+          </button>
+
+          <div className="w-full h-14 bg-gray-200 rounded-md hover:bg-gray-300 transition text-left pl-8">
+            Mode: Draw Polygon
+          </div>
 
         </div>
-      )}
 
-      <div className="mt-6">
-        <PolygonCanvas image={selectedImage} polygons={polygons} refreshPolygons={() => {if (selectedImage) {fetchPolygons(selectedImage.id);}}} />
+        {/* ================= Right ================= */}
+
+        <div className="flex flex-col">
+
+          <div className="flex justify-end mb-6">
+
+            <div className="text-right">
+
+              <p className="text-xl font-semibold">
+                Selected Image
+              </p>
+
+              <p className="text-lg">
+                {selectedImage?.filename}
+              </p>
+
+            </div>
+
+          </div>
+
+          <PolygonCanvas
+            image={selectedImage}
+            polygons={polygons}
+            refreshPolygons={() => {
+              if (selectedImage) {
+                fetchPolygons(selectedImage.id);
+              }
+            }}
+          />
+
+        </div>
+
       </div>
+
+      <footer className="mt-12 pb-4 text-center text-gray-500">
+        © 2026 404 Project
+      </footer>
+
     </div>
   );
 }
