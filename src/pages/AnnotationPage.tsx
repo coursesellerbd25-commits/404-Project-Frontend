@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import ImageUploader from "../components/annotation/ImageUploader";
 import PolygonCanvas from "../components/annotation/PolygonCanvas";
+import Footer from "../components/Footer";
 
 import { getImages } from "../services/image";
 import { getPolygons } from "../services/polygon";
@@ -94,65 +95,85 @@ export default function AnnotationPage() {
           </div>
         </div>
 
-        {/* ================= Toolbar ================= */}
-
-        <div className="space-y-5">
-
-          <button className="w-full h-14 bg-gray-200 rounded-md hover:bg-gray-300 transition text-left pl-8">
-            Draw
-          </button>
-
-          <button className="w-full h-14 bg-gray-200 rounded-md hover:bg-gray-300 transition text-left pl-8">
-            Delete
-          </button>
-
-          <button className="w-full h-14 bg-gray-200 rounded-md hover:bg-gray-300 transition text-left pl-8">
-            Save
-          </button>
-
-          <div className="w-full h-14 bg-gray-200 rounded-md hover:bg-gray-300 transition text-left pl-8">
-            Mode: Draw Polygon
-          </div>
-
-        </div>
-
         {/* ================= Right ================= */}
 
         <div className="flex flex-col">
 
-          <div className="flex justify-end mb-6">
+        {/* Selected Image */}
+          <div className="flex justify-between items-center mb-6">
 
-            <div className="text-right">
+          <div></div>
 
-              <p className="text-xl font-semibold">
-                Selected Image
-              </p>
+          <div className="text-right">
 
-              <p className="text-lg">
-                {selectedImage?.filename}
-              </p>
+            <p className="text-xl font-semibold">
+              Selected Image
+            </p>
 
-            </div>
+            <p className="text-lg">
+              {selectedImage?.filename}
+            </p>
 
           </div>
 
-          <PolygonCanvas
-            image={selectedImage}
-            polygons={polygons}
-            refreshPolygons={() => {
-              if (selectedImage) {
-                fetchPolygons(selectedImage.id);
-              }
-            }}
-          />
-
         </div>
 
+
+        {/* Toolbar */}
+        <div className="flex flex-col gap-5 mb-6">
+
+        <button
+          onClick={() => {
+            if (selectedImage) {
+              fetchPolygons(selectedImage.id);
+            }
+          }}
+          className="
+            w-[240px]
+            h-14
+           bg-gray-200
+            rounded-md
+           hover:bg-gray-300
+            transition
+            text-left
+            pl-8
+            text-lg
+          "
+        >
+        Save
+      </button>
+
+      <div
+        className="
+          w-[240px]
+          h-14
+         bg-gray-200
+          rounded-md
+          flex
+          items-center
+          pl-8
+          text-lg
+        "
+      >
+        Mode: Draw Polygon
       </div>
 
-      <footer className="mt-12 pb-4 text-center text-gray-500">
-        © 2026 404 Project
-      </footer>
+    </div>
+
+    {/* Canvas */}
+    <PolygonCanvas
+      image={selectedImage}
+      polygons={polygons}
+      refreshPolygons={() => {
+        if (selectedImage) {
+          fetchPolygons(selectedImage.id);
+        }
+      }}
+    />
+
+    </div>
+  </div>
+      <Footer darkMode={darkMode} />
 
     </div>
   );
