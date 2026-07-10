@@ -104,7 +104,7 @@ export default function Navbar() {
               : "border-black bg-white"
           }`}
         >
-          <div className={`absolute top-1 w-7 h-7 rounded-full transition-all duration-300${
+          <div className={`absolute top-1 w-7 h-7 rounded-full transition-all duration-300 ${
             darkMode
               ? "right-1 bg-white"
               : "left-1 bg-black"
