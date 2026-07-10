@@ -54,6 +54,7 @@ export default function DateSelector({ onChange }: Props) {
             mode="single"
             selected={selected}
             onSelect={handleSelect}
+            className="text-black"
           />
         </div>
       )}
