@@ -3,28 +3,41 @@ import { Moon } from "lucide-react";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between rounded-2xl bg-yellow-300 px-8 py-4 shadow-md">
+    <nav className="flex items-center justify-between rounded-3xl bg-yellow-300 px-8 py-5 shadow-sm">
 
-      {/* Left - Logo */}
-      <div className="flex items-center gap-3">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black text-white text-xl font-bold">
-          404
-        </div>
+      {/* Left - 404 Logo */}
+      <div>
+        <h1 className="flex items-end text-4xl font-light tracking-wide">
+          <span>4</span>
 
-        <span className="text-xl font-bold">
-          TaskFlow
-        </span>
+          <span
+            className="
+              mx-1
+              relative
+              -top-1.5
+              inline-block
+              h-7
+              w-7
+              rounded-full
+              bg-black
+            "
+          />
+
+          <span>4</span>
+        </h1>
       </div>
 
-      {/* Center - Navigation */}
-      <div className="flex items-center gap-8">
+      {/* Center Navigation */}
+      <div className="flex items-center gap-10">
 
         <NavLink
           to="/tasks"
           className={({ isActive }) =>
-            isActive
-              ? "font-semibold text-black border-b-2 border-black pb-1"
-              : "text-gray-700 hover:text-black transition"
+            `text-lg transition ${
+              isActive
+                ? "font-semibold text-black"
+                : "text-gray-700 hover:text-black"
+            }`
           }
         >
           Tasks
@@ -33,9 +46,11 @@ export default function Navbar() {
         <NavLink
           to="/annotations"
           className={({ isActive }) =>
-            isActive
-              ? "font-semibold text-black border-b-2 border-black pb-1"
-              : "text-gray-700 hover:text-black transition"
+            `text-lg transition ${
+              isActive
+                ? "font-semibold text-black"
+                : "text-gray-700 hover:text-black"
+            }`
           }
         >
           Annotate
@@ -43,21 +58,52 @@ export default function Navbar() {
 
       </div>
 
-      {/* Right - User */}
-      <div className="flex items-center gap-4">
+      {/* Right */}
+      <div className="flex items-center gap-3">
 
-        {/* Avatar */}
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-500 text-white font-semibold">
-          a
-        </div>
+        {/* User */}
+        <button
+          className="
+            flex
+            items-center
+            gap-2
+            rounded-full
+            bg-white
+            px-4
+            py-2
+            shadow-sm
+            hover:shadow
+            transition
+          "
+        >
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-cyan-400 text-sm font-semibold text-white">
+            A
+          </div>
 
-        {/* Theme Button */}
-        <button className="rounded-full bg-white p-2 shadow hover:bg-gray-100 transition">
+          <span className="font-medium text-gray-700">
+            User
+          </span>
+        </button>
+
+        {/* Theme Toggle */}
+        <button
+          className="
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-2xl
+            bg-white
+            shadow-sm
+            hover:shadow
+            transition
+          "
+        >
           <Moon size={18} />
         </button>
 
       </div>
-
     </nav>
   );
 }
