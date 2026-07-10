@@ -9,6 +9,7 @@ const schema = z.object({
   status: z.string(),
   selected_date: z.string(),
   due_date: z.string(),
+  tags: z.string(),
 });
 
 export default function TaskModal({ onClose, refresh }: any) {
@@ -22,10 +23,20 @@ export default function TaskModal({ onClose, refresh }: any) {
 
   const onSubmit = async (data: any) => {
     try {
-      console.log("FORM SUBMITTED", data);
-      await createTask(data);
-      refresh();   // reload tasks
-      onClose();   // close modal
+      const payload = {
+        ...data,
+        tags: data.tags
+          ? data.tags
+              .split(",")
+              .map((tag: string) => tag.trim())
+              .filter(Boolean)
+          : [],
+      };
+
+      await createTask(payload);
+
+      refresh();
+      onClose();
     } catch (err: any) {
       console.error(err.response?.data);
     }
@@ -54,18 +65,34 @@ export default function TaskModal({ onClose, refresh }: any) {
         </div>
 
         {/* Priority */}
-        <input
+        <select
           {...register("priority")}
-          placeholder="Priority (low / medium / high)"
-          className="w-full border p-2 rounded"
-        />
+            className="w-full rounded border p-2"
+            defaultValue=""
+        >
+        <option value="" disabled>
+          Select Priority
+        </option>
+
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
 
         {/* Status */}
-        <input
+        <select
           {...register("status")}
-          placeholder="Status (todo / in_progress / done)"
-          className="w-full border p-2 rounded"
-        />
+            className="w-full rounded border p-2"
+            defaultValue=""
+        >
+        <option value="" disabled>
+          Select Status
+        </option>
+
+        <option value="todo">To Do</option>
+        <option value="in_progress">In Progress</option>
+        <option value="done">Done</option>
+      </select>
 
         {/* Dates */}
         <input
@@ -78,6 +105,13 @@ export default function TaskModal({ onClose, refresh }: any) {
           {...register("due_date")}
           type="date"
           className="w-full border p-2 rounded"
+        />
+
+        {/* Tags */}
+        <input
+          {...register("tags")}
+            placeholder="Tags (e.g. frontend, bug, urgent)"
+            className="w-full rounded border p-2"
         />
 
         {/* Buttons */}
