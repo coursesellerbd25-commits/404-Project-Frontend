@@ -126,40 +126,6 @@ export default function AnnotationPage() {
       </div>
 
 
-
-      {/* ================= Vertical Slider ================= */}
-
-      <div className="
-        flex
-        justify-center
-        items-center
-      ">
-
-        <div className="
-          w-4
-          h-[580px]
-          bg-gray-200
-          rounded-full
-          relative
-        ">
-
-          <div className="
-            absolute
-            top-1/3
-            left-0.5
-            w-3
-            h-40
-            bg-white
-            rounded-full
-          "/>
-
-        </div>
-
-      </div>
-
-
-
-
       {/* ================= Right Side ================= */}
 
       <div className="flex flex-col">
