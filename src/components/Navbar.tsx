@@ -31,30 +31,40 @@ export default function Navbar() {
       {/* Center Navigation */}
       <div className="flex items-center gap-10">
 
-        <NavLink
-          to="/tasks"
-          className={({ isActive }) =>
-            `pb-2 text-lg transition ${
-              isActive
-                ? "font-semibold text-black border-b-4 border-black"
-                : "text-gray-700 border-b-4 border-transparent hover:text-black"
-            }`
-          }
-        >
-          Tasks
+        <NavLink to="/tasks">
+          {({ isActive }) => (
+            <div
+              className={`relative pb-1 text-lg transition ${
+                isActive
+                  ? "font-semibold text-black"
+                  : "text-gray-700 hover:text-black"
+              }`}
+            >
+              Tasks
+
+                {isActive && (
+                  <span className="absolute left-0 -bottom-0.5 h-[5px] w-full rounded-full bg-black" />
+                )}
+            </div>
+          )}
         </NavLink>
 
-        <NavLink
-          to="/annotations"
-          className={({ isActive }) =>
-            `pb-2 text-lg transition ${
-              isActive
-                ? "font-semibold text-black border-b-[5px] border-black"
-                : "text-gray-700 border-b-[5px] border-transparent hover:text-black"
-            }`
-          }
-        >
-          Annotate
+        <NavLink to="/annotations">
+          {({ isActive }) => (
+            <div
+              className={`relative pb-1 text-lg transition ${
+                isActive
+                  ? "font-semibold text-black"
+                  : "text-gray-700 hover:text-black"
+              }`}
+            >
+              Annotate
+
+                {isActive && (
+                  <span className="absolute left-0 -bottom-0.5 h-[5px] w-full rounded-full bg-black" />
+                )}
+            </div>
+          )}
         </NavLink>
 
       </div>
