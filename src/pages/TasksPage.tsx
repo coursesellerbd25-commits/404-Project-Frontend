@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import Navbar from "../components/Navbar";
 import DateSelector from "../components/DateSelector";
@@ -8,6 +8,7 @@ import TaskModal from "../components/tasks/TaskModal";
 import { useTaskStore } from "../store/useTaskStore";
 
 export default function TasksPage() {
+  const [darkMode, setDarkMode] = useState(false);
   const {
     tasks,
     selectedDate,
@@ -32,8 +33,15 @@ export default function TasksPage() {
   }, [selectedDate]);
 
   return (
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        darkMode
+          ? "bg-black text-white"
+          : "bg-white text-black"
+        }`}
+    >
     <div className="max-w-7xl mx-auto px-8 py-8">
-      <Navbar />
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
       <div className="mt-12 flex justify-between items-start">
         <div>
@@ -64,5 +72,6 @@ export default function TasksPage() {
             />
           )}
         </div>
+      </div>
   );
 }

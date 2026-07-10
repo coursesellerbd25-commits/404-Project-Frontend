@@ -1,8 +1,14 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 
-export default function Navbar() {
-  const [darkMode, setDarkMode] = useState(false);
+type NavbarProps = {
+  darkMode: boolean;
+  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export default function Navbar({
+  darkMode,
+  setDarkMode,
+}: NavbarProps) {
   return (
     <nav className="flex items-center justify-between rounded-3xl bg-yellow-300 px-8 py-5 shadow-sm">
 

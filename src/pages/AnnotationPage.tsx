@@ -8,6 +8,7 @@ import { getImages } from "../services/image";
 import { getPolygons } from "../services/polygon";
 
 export default function AnnotationPage() {
+  const [darkMode, setDarkMode] = useState(false);
   const [images, setImages] = useState<any[]>([]);
   const [selectedImage, setSelectedImage] = useState<any>(null);
   const [polygons, setPolygons] = useState<any[]>([]);
@@ -49,7 +50,7 @@ export default function AnnotationPage() {
 
   return (
     <div className="min-h-screen bg-white p-6">
-      <Navbar />
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
       <div className="mt-6 grid grid-cols-[260px_220px_1fr] gap-10">
 
