@@ -47,7 +47,7 @@ export default function Navbar() {
         <NavLink
           to="/annotations"
           className={({ isActive }) =>
-            `pb-2 text-lg transition ${
+            `text-lg transition ${
               isActive
                 ? "font-semibold text-black border-b-4 border-black"
                 : "text-gray-700 border-b-4 border-transparent hover:text-black"
