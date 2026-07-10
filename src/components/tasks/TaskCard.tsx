@@ -39,21 +39,6 @@ export default function TaskCard({
       {...listeners}
       className="w-64 min-h-[250px] flex flex-col justify-between flex-shrink-0 rounded-2xl bg-cyan-400 text-white p-5 shadow-md hover:-translate-y-1 transition">
 
-      {/* Title */}
-      <h3 className="mt-4 text-xl font-bold">
-        {task.title}
-      </h3>
-
-      {/* Date */}
-      <div className="mt-5 space-y-1 text-sm opacity-90">
-        <p>
-          📅 Selected: {task.selected_date}
-        </p>
-
-        <p>
-          ⏰ Due: {task.due_date}
-        </p>
-
       {/* Priority */}
       <span
         className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${
@@ -68,7 +53,27 @@ export default function TaskCard({
         {task.priority?.toUpperCase()}
       </span>
 
+      {/* Title */}
+      <h3 className="mt-4 text-xl font-bold">
+        {task.title}
+      </h3>
+
+      {/* Content */}
+      <div className="mt-5 flex-1">
+      
+      {/* Date */}
+      <div className="space-y-2 text-sm opacity-90">
+        <p>
+          📅 Selected: {task.selected_date}
+        </p>
+
+        <p>
+          ⏰ Due: {task.due_date}
+        </p>
+      </div>
+
       {/* Tags */}
+      <div className="mt-5 flex flex-wrap gap-2">
         {task.tags?.length ? (
           task.tags.map((tag: string, index: number) => (
             <span
@@ -84,11 +89,12 @@ export default function TaskCard({
           </span>
         )}
       </div>
+    </div>
 
       {/* Delete Button */}
       <button
         onClick={handleDelete}
-        className="mt-6 text-sm font-medium text-red-200 hover:text-white transition"
+        className="mt-6 self-start text-sm font-medium text-red-200 hover:text-white transition"
       >
         Delete
       </button>
