@@ -9,22 +9,19 @@ export default function Navbar() {
       {/* Left - 404 Logo */}
       <div>
         <h1 className="flex items-end text-4xl font-light tracking-wide">
-          <span>4</span>
+          <span className={darkMode ? "text-white" : "text-black"}>
+            4
+          </span>
 
           <span
-            className="
-              mx-1
-              relative
-              -top-1.5
-              inline-block
-              h-7
-              w-7
-              rounded-full
-              bg-black
-            "
+            className={`mx-1 relative -top-1.5 inline-block h-7 w-7 rounded-full ${
+              darkMode ? "bg-white" : "bg-black"
+            }`}
           />
 
-          <span>4</span>
+          <span className={darkMode ? "text-white" : "text-black"}>
+            4
+          </span>
         </h1>
       </div>
 
@@ -36,14 +33,21 @@ export default function Navbar() {
             <div
               className={`relative pb-1 text-lg transition ${
                 isActive
-                  ? "font-semibold text-black"
-                  : "text-gray-700 hover:text-black"
+                  ? `font-semibold ${darkMode ? "text-cyan-400" : "text-black"}`
+                  : `${
+                    darkMode
+                      ? "text-gray-300 hover:text-cyan-400"
+                      : "text-gray-700 hover:text-black"
+                    }`
               }`}
             >
               Tasks
 
                 {isActive && (
-                  <span className="absolute left-0 -bottom-0.5 h-[5px] w-full rounded-full bg-black" />
+                  <span className={`absolute left-0 -bottom-0.5 h-[5px] w-full rounded-full ${
+                                      darkMode ? "bg-cyan-400" : "bg-black"
+                                  }`} 
+                  />
                 )}
             </div>
           )}
@@ -54,14 +58,21 @@ export default function Navbar() {
             <div
               className={`relative pb-1 text-lg transition ${
                 isActive
-                  ? "font-semibold text-black"
-                  : "text-gray-700 hover:text-black"
+                  ? `font-semibold ${darkMode ? "text-cyan-400" : "text-black"}`
+                  : `${
+                    darkMode
+                      ? "text-gray-300 hover:text-cyan-400"
+                      : "text-gray-700 hover:text-black"
+                    }`
               }`}
             >
               Annotate
 
                 {isActive && (
-                  <span className="absolute left-0 -bottom-0.5 h-[5px] w-full rounded-full bg-black" />
+                  <span className={`absolute left-0 -bottom-0.5 h-[5px] w-full rounded-full ${
+                                      darkMode ? "bg-cyan-400" : "bg-black"
+                                  }`} 
+                  />
                 )}
             </div>
           )}
