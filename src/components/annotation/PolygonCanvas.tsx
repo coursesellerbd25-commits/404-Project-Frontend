@@ -89,16 +89,16 @@ export default function PolygonCanvas({
   return (
     <div className="border rounded-lg overflow-hidden">
       <Stage
-        width={800}
-        height={600}
+        width={900}
+        height={700}
         onClick={handleClick}
       >
         <Layer>
           {img && (
             <KonvaImage
               image={img}
-              width={800}
-              height={600}
+              width={900}
+              height={700}
             />
           )}
 

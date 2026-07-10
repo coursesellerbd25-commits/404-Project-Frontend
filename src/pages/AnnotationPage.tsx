@@ -50,131 +50,241 @@ export default function AnnotationPage() {
   }, [selectedImage]);
 
   return (
-    <div className="min-h-screen bg-white p-6">
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+  <div className="min-h-screen bg-white p-6">
 
-      <div className="mt-6 grid grid-cols-[260px_220px_1fr] gap-10">
+    <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
-        {/* ================= Sidebar ================= */}
-        <div className="flex flex-col w-[260px]">
+    <div className="mt-6 grid grid-cols-[260px_40px_1fr] gap-8">
 
-          <h2 className="text-4xl font-bold mb-8">
-            Images
-          </h2>
 
-          <ImageUploader refresh={fetchImages} />
+      {/* ================= Sidebar ================= */}
+      <div className="flex flex-col w-[260px]">
 
-          <div className="mt-8 flex-1 overflow-y-auto space-y-5 h-[720px]">
+        <h2 className="text-4xl font-bold mb-8">
+          Images
+        </h2>
 
-            {images.map((image) => {
 
-              return (
-                <button
-                  key={image.id}
-                  onClick={() => {
-                    setSelectedImage(image);
-                  }}
-                  className={`relative w-full rounded-2xl p-5 bg-cyan-400 text-white text-left transition
-                  ${
-                    selectedImage?.id === image.id
-                      ? "border-2 border-black"
-                      : ""
-                  }`}
-                >
-                  <div className="flex items-center justify-center h-40">
+        <ImageUploader refresh={fetchImages} />
 
-                    <span className="text-2xl font-medium">
-                      {image.filename}
-                    </span>
 
-                  </div>
-                </button>
-              );
-            })}
+        <div className="
+          mt-8
+          overflow-y-auto
+          space-y-5
+          h-[720px]
+          pr-2
+        ">
 
-          </div>
+          {images.map((image) => (
+
+            <button
+              key={image.id}
+              onClick={() => setSelectedImage(image)}
+              className={`
+                relative
+                w-full
+                h-52
+                rounded-2xl
+                bg-cyan-400
+                text-white
+                transition
+
+                ${
+                  selectedImage?.id === image.id
+                  ? "border-2 border-black"
+                  : ""
+                }
+              `}
+            >
+
+              <span className="
+                text-xl
+                font-medium
+              ">
+                {image.filename}
+              </span>
+
+
+              <span className="
+                absolute
+                bottom-4
+                right-5
+                text-sm
+                text-red-600
+              ">
+                Delete
+              </span>
+
+
+            </button>
+
+          ))}
+
         </div>
 
-        {/* ================= Right ================= */}
+      </div>
 
-        <div className="flex flex-col">
 
-        {/* Selected Image */}
-          <div className="flex justify-between items-center mb-6">
 
-          <div></div>
+      {/* ================= Vertical Slider ================= */}
 
-          <div className="text-right">
+      <div className="
+        flex
+        justify-center
+        items-center
+      ">
 
-            <p className="text-xl font-semibold">
+        <div className="
+          w-4
+          h-[580px]
+          bg-gray-200
+          rounded-full
+          relative
+        ">
+
+          <div className="
+            absolute
+            top-1/3
+            left-0.5
+            w-3
+            h-40
+            bg-white
+            rounded-full
+          "/>
+
+        </div>
+
+      </div>
+
+
+
+
+      {/* ================= Right Side ================= */}
+
+      <div className="flex flex-col">
+
+
+        {/* Top Controls Row */}
+        <div className="
+          flex
+          justify-between
+          items-start
+          mb-6
+        ">
+
+
+          {/* Toolbar */}
+          <div className="
+            flex
+            gap-6
+          ">
+
+
+            <button
+              className="
+                w-60
+                h-14
+                bg-gray-200
+                rounded-md
+                text-lg
+                hover:bg-gray-300
+              "
+            >
+              Save
+            </button>
+
+
+
+            <div
+              className="
+                w-60
+                h-14
+                bg-gray-200
+                rounded-md
+                flex
+                items-center
+                justify-center
+                text-lg
+              "
+            >
+              Mode: Draw Polygon
+            </div>
+
+
+          </div>
+
+
+
+
+          {/* Selected Image */}
+          <div className="
+            text-right
+            mr-8
+          ">
+
+            <p className="
+              text-xl
+              font-semibold
+            ">
               Selected Image
             </p>
 
-            <p className="text-lg">
-              {selectedImage?.filename}
+
+            <p className="text-lg mt-2">
+              {
+                selectedImage?.filename ||
+                "No image selected"
+              }
             </p>
 
+
           </div>
+
 
         </div>
 
 
-        {/* Toolbar */}
-        <div className="flex flex-col gap-5 mb-6">
 
-        <button
-          onClick={() => {
-            if (selectedImage) {
-              fetchPolygons(selectedImage.id);
-            }
-          }}
-          className="
-            w-[240px]
-            h-14
-           bg-gray-200
-            rounded-md
-           hover:bg-gray-300
-            transition
-            text-left
-            pl-8
-            text-lg
-          "
-        >
-        Save
-      </button>
 
-      <div
-        className="
-          w-[240px]
-          h-14
-         bg-gray-200
-          rounded-md
+
+        {/* Canvas */}
+
+        <div className="
+          bg-gray-200
+          rounded-none
+          p-5
+          w-full
+          min-h-[720px]
           flex
+          justify-center
           items-center
-          pl-8
-          text-lg
-        "
-      >
-        Mode: Draw Polygon
+        ">
+
+
+          <PolygonCanvas
+            image={selectedImage}
+            polygons={polygons}
+            refreshPolygons={() => {
+              if(selectedImage){
+                fetchPolygons(selectedImage.id);
+              }
+            }}
+          />
+
+
+        </div>
+
+
       </div>
 
-    </div>
-
-    {/* Canvas */}
-    <PolygonCanvas
-      image={selectedImage}
-      polygons={polygons}
-      refreshPolygons={() => {
-        if (selectedImage) {
-          fetchPolygons(selectedImage.id);
-        }
-      }}
-    />
 
     </div>
+
+
+    <Footer darkMode={darkMode}/>
+
+
   </div>
-      <Footer darkMode={darkMode} />
-
-    </div>
-  );
+);
 }
