@@ -90,14 +90,13 @@ export default function AnnotationPage() {
               key={image.id}
               onClick={() => setSelectedImage(image)}
               className={`
+                group
                 relative
                 w-full
                 h-52
+                overflow-hidden
                 rounded-2xl
-                bg-cyan-400
-                text-white
                 transition
-
                 ${
                   selectedImage?.id === image.id
                   ? darkMode
@@ -107,6 +106,33 @@ export default function AnnotationPage() {
                 }
               `}
             >
+
+               {/* Uploaded Image */}
+                <img
+                  src={image.image}
+                  alt={image.filename}
+                  className="h-full w-full object-cover"
+                />
+
+              {/* Hover Overlay */}
+                <div
+                  className={`
+                    absolute inset-0
+                    flex flex-col items-center justify-center
+                   bg-cyan-400/90
+                   text-white
+                    opacity-0
+                    transition-opacity
+                    duration-300
+                    group-hover:opacity-100
+
+                  ${
+                  selectedImage?.id === image.id
+                    ? "opacity-100"
+                    : ""
+                  }
+                `}
+              >
 
               <span className="
                 text-xl
@@ -125,8 +151,7 @@ export default function AnnotationPage() {
               ">
                 Delete
               </span>
-
-
+              </div>
             </button>
 
           ))}
