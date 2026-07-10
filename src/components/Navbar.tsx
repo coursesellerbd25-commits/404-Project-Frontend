@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
-import { Moon } from "lucide-react";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [darkMode, setDarkMode] = useState(false);
   return (
     <nav className="flex items-center justify-between rounded-3xl bg-yellow-300 px-8 py-5 shadow-sm">
 
@@ -77,7 +78,7 @@ export default function Navbar() {
           "
         >
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-cyan-400 text-sm font-semibold text-white">
-            A
+            a
           </div>
 
           <span className="font-medium text-gray-700">
@@ -87,20 +88,27 @@ export default function Navbar() {
 
         {/* Theme Toggle */}
         <button
-          className="
-            flex
-            h-11
-            w-11
-            items-center
-            justify-center
-            rounded-2xl
-            bg-white
-            shadow-sm
-            hover:shadow
-            transition
-          "
+          type="button"
+          onClick={() => setDarkMode(!darkMode)}
+          className={`
+            relative
+            w-20
+            h-10
+            rounded-full
+            border-2
+            transition-all
+            duration-300
+          ${
+            darkMode
+              ? "border-white bg-black"
+              : "border-black bg-white"
+          }`}
         >
-          <Moon size={18} />
+          <div className={`absolute top-1 w-7 h-7 rounded-full transition-all duration-300${
+            darkMode
+              ? "right-1 bg-white"
+              : "left-1 bg-black"
+          }`} />
         </button>
 
       </div>
