@@ -54,7 +54,7 @@ export default function AnnotationPage() {
 
     <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
-    <div className="mt-6 grid grid-cols-[260px_40px_1fr] gap-8">
+    <div className="mt-6 grid grid-cols-[260px_1fr] gap-8">
 
 
       {/* ================= Sidebar ================= */}
