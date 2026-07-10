@@ -3,10 +3,12 @@ import { uploadImage } from "../../services/image";
 
 type ImageUploaderProps = {
   refresh: () => void;
+  darkMode: boolean;
 };
 
 export default function ImageUploader({
   refresh,
+  darkMode,
 }: ImageUploaderProps) {
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -33,7 +35,10 @@ export default function ImageUploader({
 
   return (
     <div>
-      <h2 className="text-3xl font-bold mb-6">
+      <h2 className={`text-2xl font-bold mb-4 ${
+            darkMode ? "text-white" : "text-black"
+          }`}
+        >
         Upload Image
       </h2>
 

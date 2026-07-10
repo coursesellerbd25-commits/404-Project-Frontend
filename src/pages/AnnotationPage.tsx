@@ -60,12 +60,15 @@ export default function AnnotationPage() {
       {/* ================= Sidebar ================= */}
       <div className="flex flex-col w-[260px]">
 
-        <h2 className="text-4xl font-bold mb-8">
+        <h2 className={`text-4xl font-bold mb-8 ${
+              darkMode ? "text-white" : "text-black"
+            }`}
+        >
           Images
         </h2>
 
 
-        <ImageUploader refresh={fetchImages} />
+        <ImageUploader refresh={fetchImages} darkMode={darkMode} />
 
 
         <div className="
@@ -92,7 +95,9 @@ export default function AnnotationPage() {
 
                 ${
                   selectedImage?.id === image.id
-                  ? "border-2 border-black"
+                  ? darkMode
+                    ? "border-2 border-white"
+                    : "border-2 border-black"
                   : ""
                 }
               `}
@@ -189,15 +194,18 @@ export default function AnnotationPage() {
             mr-8
           ">
 
-            <p className="
-              text-xl
-              font-semibold
-            ">
+            <p className={`text-xl font-semibold ${
+                darkMode ? "text-white" : "text-black"
+              }`}
+            >
               Selected Image
             </p>
 
 
-            <p className="text-lg mt-2">
+            <p className={`text-lg mt-2 ${
+                  darkMode ? "text-white" : "text-black"
+                }`}
+            >
               {
                 selectedImage?.filename ||
                 "No image selected"
