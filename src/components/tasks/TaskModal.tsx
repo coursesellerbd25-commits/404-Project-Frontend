@@ -95,17 +95,27 @@ export default function TaskModal({ onClose, refresh }: any) {
       </select>
 
         {/* Dates */}
+        <div>
+        <label className="mb-1 block text-sm font-medium text-gray-700">
+          Pick a selected date
+        </label>
         <input
           {...register("selected_date")}
           type="date"
           className="w-full border p-2 rounded"
         />
+        </div>
 
+        <div>
+        <label className="mb-1 block text-sm font-medium text-gray-700">
+          Pick a due date
+        </label>
         <input
           {...register("due_date")}
           type="date"
           className="w-full border p-2 rounded"
         />
+        </div>
 
         {/* Tags */}
         <input
