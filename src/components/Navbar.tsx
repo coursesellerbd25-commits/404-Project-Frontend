@@ -34,10 +34,10 @@ export default function Navbar() {
         <NavLink
           to="/tasks"
           className={({ isActive }) =>
-            `text-lg transition ${
+            `pb-2 text-lg transition ${
               isActive
-                ? "font-semibold text-black"
-                : "text-gray-700 hover:text-black"
+                ? "font-semibold text-black border-b-4 border-black"
+                : "text-gray-700 border-b-4 border-transparent hover:text-black"
             }`
           }
         >
@@ -47,10 +47,10 @@ export default function Navbar() {
         <NavLink
           to="/annotations"
           className={({ isActive }) =>
-            `text-lg transition ${
+            `pb-2 text-lg transition ${
               isActive
-                ? "font-semibold text-black"
-                : "text-gray-700 hover:text-black"
+                ? "font-semibold text-black border-b-4 border-black"
+                : "text-gray-700 border-b-4 border-transparent hover:text-black"
             }`
           }
         >
