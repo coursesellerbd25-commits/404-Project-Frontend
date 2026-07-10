@@ -22,19 +22,6 @@ export default function TaskCard({
     }
   : undefined;
 
-  const getPriorityColor = (priority?: string) => {
-    switch ((priority || "").toLowerCase()) {
-      case "high":
-        return "bg-red-100 text-red-600";
-      case "medium":
-        return "bg-yellow-100 text-yellow-700";
-      case "low":
-        return "bg-green-100 text-green-600";
-      default:
-        return "bg-gray-100 text-gray-600";
-    }
-  };
-
   const handleDelete = async () => {
     try {
       await deleteTask(task.id);
@@ -50,48 +37,60 @@ export default function TaskCard({
       style={style}
       {...attributes}
       {...listeners}
-      className="bg-white p-3 rounded-lg shadow hover:shadow-md transition mb-3">
+      className="w-64 min-h-[250px] flex flex-col justify-between flex-shrink-0 rounded-2xl bg-cyan-400 text-white p-5 shadow-md hover:-translate-y-1 transition">
+
       {/* Title */}
-      <h3 className="font-semibold text-gray-800">
+      <h3 className="mt-4 text-xl font-bold">
         {task.title}
       </h3>
 
+      {/* Date */}
+      <div className="mt-5 space-y-1 text-sm opacity-90">
+        <p>
+          📅 Selected: {task.selected_date}
+        </p>
+
+        <p>
+          ⏰ Due: {task.due_date}
+        </p>
+      </div>
+
       {/* Priority */}
       <span
-        className={`inline-block mt-2 px-2 py-1 text-xs rounded ${getPriorityColor(
-          task.priority
-        )}`}
+        className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${
+          task.priority === "high"
+            ? "bg-red-500"
+            : task.priority === "medium"
+            ? "bg-yellow-500"
+            : "bg-green-500"
+          }
+        `}
       >
-        {task.priority?.toUpperCase() || "LOW"}
+        {task.priority?.toUpperCase()}
       </span>
 
       {/* Tags */}
-      <div className="flex flex-wrap gap-2 mt-3">
+      <div className="flex flex-wrap gap-2 mt-5">
         {task.tags?.length ? (
           task.tags.map((tag: string, index: number) => (
             <span
               key={index}
-              className="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded-full"
+              className="rounded-full bg-white/20 px-3 py-1 text-xs"
             >
               #{tag}
             </span>
           ))
         ) : (
-          <span className="text-xs text-gray-400">
+          <span className="text-xs text-white/70">
             No tags
           </span>
         )}
       </div>
 
-      {/* Due Date */}
-      <p className="text-xs text-gray-500 mt-3">
-        📅 Due: {task.due_date}
-      </p>
-
       {/* Delete Button */}
       <button
         onClick={handleDelete}
-        className="mt-3 text-xs text-red-600 hover:text-red-700 transition"
+        className="mt-6 text-sm font-medium text-red-200 hover:text-white transition"
       >
         Delete
       </button>
