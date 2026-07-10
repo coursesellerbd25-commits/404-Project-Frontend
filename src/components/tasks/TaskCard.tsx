@@ -53,7 +53,6 @@ export default function TaskCard({
         <p>
           ⏰ Due: {task.due_date}
         </p>
-      </div>
 
       {/* Priority */}
       <span
@@ -70,7 +69,6 @@ export default function TaskCard({
       </span>
 
       {/* Tags */}
-      <div className="flex flex-wrap gap-2 mt-5">
         {task.tags?.length ? (
           task.tags.map((tag: string, index: number) => (
             <span
