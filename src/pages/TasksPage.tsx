@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import DateSelector from "../components/DateSelector";
 import KanbanBoard from "../components/KanbanBoard";
 import TaskModal from "../components/tasks/TaskModal";
+import Footer from "../components/Footer";
 
 import { useTaskStore } from "../store/useTaskStore";
 
@@ -57,6 +58,9 @@ export default function TasksPage() {
         <div className="mt-12">
           <KanbanBoard tasks={tasks} refresh={() => selectedDate ? fetchTasks(selectedDate) : fetchTasks()} />
         </div>
+
+        <Footer darkMode={darkMode} />
+        
         <button
           onClick={() => setShowModal(true)}
           className="fixed bottom-10 right-10 h-16 w-16 rounded-full bg-yellow-300 text-4xl shadow-xl hover:scale-110 transition">
