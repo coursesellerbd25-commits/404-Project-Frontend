@@ -181,22 +181,6 @@ export default function AnnotationPage() {
             gap-6
           ">
 
-
-            <button
-              className="
-                w-60
-                h-14
-                bg-gray-200
-                rounded-md
-                text-lg
-                hover:bg-gray-300
-              "
-            >
-              Save
-            </button>
-
-
-
             <div
               className="
                 w-60
