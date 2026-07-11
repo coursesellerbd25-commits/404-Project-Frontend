@@ -20,7 +20,7 @@ export const createTask = async (task: any) => {
 
 // UPDATE task
 export const updateTask = async (id: number, task: any) => {
-  const res = await api.put(`tasks/${id}/`, task);
+  const res = await api.patch(`tasks/${id}/`, task);
   return res.data;
 };
 
