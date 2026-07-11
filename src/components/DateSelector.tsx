@@ -49,12 +49,12 @@ export default function DateSelector({ onChange }: Props) {
 
       {/* Calendar */}
       {open && (
-        <div className="border-t border-gray-200 p-3">
+        <div className="border-t border-gray-200 p-2 sm:p-3 flex justify-center">
           <DayPicker
             mode="single"
             selected={selected}
             onSelect={handleSelect}
-            className="text-black"
+            className="text-black w-fit mx-auto"
           />
         </div>
       )}
