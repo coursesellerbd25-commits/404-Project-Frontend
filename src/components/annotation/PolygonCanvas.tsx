@@ -20,6 +20,20 @@ export default function PolygonCanvas({
   polygons,
   refreshPolygons,
 }: PolygonCanvasProps) {
+  const STAGE_WIDTH =
+    window.innerWidth < 640
+      ? window.innerWidth - 40
+      : window.innerWidth < 1024
+      ? 700
+      : 900;
+
+  const STAGE_HEIGHT =
+    window.innerWidth < 640
+      ? 350
+      : window.innerWidth < 1024
+      ? 500
+      : 700;
+
   const [img] = useImage(image?.image || "");
   const [hoveredPolygon, setHoveredPolygon] = useState<number | null>(null);
   const [points, setPoints] = useState<number[]>([]);
@@ -87,18 +101,18 @@ export default function PolygonCanvas({
   };
 
   return (
-    <div className="border rounded-lg overflow-hidden">
+    <div className="border rounded-lg overflow-x-auto max-w-full">
       <Stage
-        width={900}
-        height={700}
+        width={STAGE_WIDTH}
+        height={STAGE_HEIGHT}
         onClick={handleClick}
       >
         <Layer>
           {img && (
             <KonvaImage
               image={img}
-              width={900}
-              height={700}
+              width={STAGE_WIDTH}
+              height={STAGE_HEIGHT}
             />
           )}
 
@@ -158,7 +172,7 @@ export default function PolygonCanvas({
       <button
         onClick={handleSave}
         disabled={points.length < 6}
-        className={`mt-4 px-4 py-2 rounded text-white transition ${
+        className={`mt-4 w-full sm:w-auto px-4 py-2 rounded text-white transition ${
           points.length >= 6
             ? "bg-blue-600 hover:bg-blue-700"
             : "bg-gray-400 cursor-not-allowed"
@@ -180,7 +194,7 @@ export default function PolygonCanvas({
           polygons.map((polygon, index) => (
             <div
               key={polygon.id}
-              className="flex items-center justify-between border rounded p-2 mb-2"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-0 sm:items-center sm:justify-between border rounded p-2 mb-2"
             >
               <span>
                 Polygon {index + 1}
@@ -188,7 +202,7 @@ export default function PolygonCanvas({
 
               <button
                 onClick={() => handleDelete(polygon.id)}
-                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                className="w-full sm:w-auto bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
               >
                 Delete
               </button>

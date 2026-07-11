@@ -50,7 +50,7 @@ export default function AnnotationPage() {
   }, [selectedImage]);
 
   return (
-  <div className={`min-h-screen p-6 transition-colors duration-300 ${
+  <div className={`min-h-screen px-4 sm:px-6 lg:px-8 py-5 sm:py-6 transition-colors duration-300 ${
         darkMode
           ? "bg-black"
           : "bg-white"
@@ -59,13 +59,13 @@ export default function AnnotationPage() {
 
     <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
-    <div className="mt-6 grid grid-cols-[260px_1fr] gap-8">
+    <div className="mt-6 grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-8">
 
 
       {/* ================= Sidebar ================= */}
-      <div className="flex flex-col w-[260px]">
+      <div className="flex flex-col w-full lg:w-[260px]">
 
-        <h2 className={`text-4xl font-bold mb-8 ${
+        <h2 className={`text-3xl sm:text-4xl font-bold mb-8 ${
               darkMode ? "text-white" : "text-black"
             }`}
         >
@@ -80,7 +80,8 @@ export default function AnnotationPage() {
           mt-8
           overflow-y-auto
           space-y-5
-          h-[720px]
+          lg:h-[720px]
+          max-h-[400px]
           pr-2
         ">
 
@@ -93,7 +94,7 @@ export default function AnnotationPage() {
                 group
                 relative
                 w-full
-                h-52
+                h-44 sm:h-52
                 overflow-hidden
                 rounded-2xl
                 transition
@@ -169,8 +170,11 @@ export default function AnnotationPage() {
         {/* Top Controls Row */}
         <div className="
           flex
-          justify-between
-          items-start
+          flex-col
+          lg:flex-row
+          gap-5
+          lg:justify-between
+          lg:items-start
           mb-6
         ">
 
@@ -183,8 +187,10 @@ export default function AnnotationPage() {
 
             <div
               className="
-                w-60
-                h-14
+                w-full
+                sm:w-60
+                h-12
+                sm:h-14
                 bg-gray-200
                 rounded-md
                 flex
@@ -204,8 +210,10 @@ export default function AnnotationPage() {
 
           {/* Selected Image */}
           <div className="
-            text-right
-            mr-8
+            text-left
+            lg:text-right
+            mr-0
+            lg:mr-8
           ">
 
             <p className={`text-xl font-semibold ${
@@ -241,9 +249,11 @@ export default function AnnotationPage() {
         <div className="
           bg-gray-200
           rounded-none
-          p-5
+          p-2 sm:p-4 lg:p-5
           w-full
-          min-h-[720px]
+          min-h-[420px]
+          sm:min-h-[550px]
+          lg:min-h-[720px]
           flex
           justify-center
           items-center

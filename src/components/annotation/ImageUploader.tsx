@@ -34,7 +34,7 @@ export default function ImageUploader({
   };
 
   return (
-    <div>
+    <div className="w-full">
       <h2 className={`text-2xl font-bold mb-4 ${
             darkMode ? "text-white" : "text-black"
           }`}
@@ -62,7 +62,7 @@ export default function ImageUploader({
             .getElementById("upload-image")
             ?.click()
         }
-        className="rounded-xl bg-cyan-400 px-8 py-3 text-white hover:bg-cyan-500"
+        className="w-full sm:w-auto rounded-xl bg-cyan-400 px-6 py-3 text-white hover:bg-cyan-500"
       >
         Upload
       </button>
@@ -70,7 +70,7 @@ export default function ImageUploader({
       {file && (
         <button
           onClick={handleUpload}
-          className="ml-4 rounded-xl bg-blue-600 px-6 py-3 text-white"
+          className="mt-3 sm:mt-0 sm:ml-4 w-full sm:w-auto rounded-xl bg-blue-600 px-6 py-3 text-white"
         >
           {uploading ? "Uploading..." : "Confirm"}
         </button>
