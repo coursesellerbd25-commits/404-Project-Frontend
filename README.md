@@ -8,12 +8,16 @@ This application provides a modern Kanban task management system with an image a
 
 # Live Demo
 
-```
-Frontend: https://404-project-frontend.vercel.app/
-```
+Frontend:
 
 ```
-Backend API: https://four04-project-backend-1.onrender.com
+https://404-project-frontend.vercel.app/
+```
+
+Backend API:
+
+```
+https://four04-project-backend-1.onrender.com
 ```
 
 ---
