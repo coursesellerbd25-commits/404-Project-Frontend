@@ -37,7 +37,7 @@ export default function TaskCard({
       style={style}
       {...attributes}
       {...listeners}
-      className="w-64 min-h-[250px] flex flex-col justify-between flex-shrink-0 rounded-2xl bg-cyan-400 text-white p-5 shadow-md hover:-translate-y-1 transition">
+      className="w-[260px] sm:w-72 min-h-[250px] flex flex-col justify-between flex-shrink-0 rounded-2xl bg-cyan-400 text-white p-4 sm:p-5 shadow-md hover:-translate-y-1 transition">
 
       {/* Priority */}
       <span
@@ -54,7 +54,7 @@ export default function TaskCard({
       </span>
 
       {/* Title */}
-      <h3 className="mt-4 text-xl font-bold">
+      <h3 className="mt-4 text-lg sm:text-xl font-bold">
         {task.title}
       </h3>
 
@@ -62,7 +62,7 @@ export default function TaskCard({
       <div className="mt-5 flex-1">
       
       {/* Date */}
-      <div className="space-y-2 text-sm opacity-90">
+      <div className="space-y-2 text-xs sm:text-sm opacity-90">
         <p>
           📅 Selected: {task.selected_date}
         </p>
@@ -94,7 +94,7 @@ export default function TaskCard({
       {/* Delete Button */}
       <button
         onClick={handleDelete}
-        className="mt-6 self-start text-sm font-medium text-red-200 hover:text-white transition"
+        className="mt-6 self-start text-xs sm:text-sm font-medium text-red-200 hover:text-white transition"
       >
         Delete
       </button>

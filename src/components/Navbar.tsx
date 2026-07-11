@@ -10,7 +10,7 @@ export default function Navbar({
   setDarkMode,
 }: NavbarProps) {
   return (
-    <nav className="flex items-center justify-between rounded-3xl bg-yellow-300 px-8 py-5 shadow-sm">
+    <nav className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between rounded-3xl bg-yellow-300 px-5 sm:px-8 py-5 shadow-sm">
 
       {/* Left - 404 Logo */}
       <div>
@@ -32,7 +32,7 @@ export default function Navbar({
       </div>
 
       {/* Center Navigation */}
-      <div className="flex items-center gap-10">
+      <div className="flex items-center gap-6 sm:gap-10">
 
         <NavLink to="/tasks">
           {({ isActive }) => (
@@ -87,7 +87,7 @@ export default function Navbar({
       </div>
 
       {/* Right */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 flex-wrap justify-center">
 
         {/* User */}
         <button
@@ -119,8 +119,9 @@ export default function Navbar({
           onClick={() => setDarkMode(!darkMode)}
           className={`
             relative
-            w-20
-            h-10
+            w-16 h-8
+            sm:w-20
+            sm:h-10
             rounded-full
             border-2
             transition-all
@@ -131,7 +132,7 @@ export default function Navbar({
               : "border-black bg-white"
           }`}
         >
-          <div className={`absolute top-1 w-7 h-7 rounded-full transition-all duration-300 ${
+          <div className={`absolute top-1 w-5 h-5 sm:w-7 sm:h-7 rounded-full transition-all duration-300 ${
             darkMode
               ? "right-1 bg-white"
               : "left-1 bg-black"

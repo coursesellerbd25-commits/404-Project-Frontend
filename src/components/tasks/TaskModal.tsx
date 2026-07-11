@@ -43,10 +43,10 @@ export default function TaskModal({ onClose, refresh }: any) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center p-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-5 rounded-lg w-96 space-y-3"
+        className="bg-white p-5 sm:p-6 rounded-lg w-full max-w-md space-y-3"
       >
         <h2 className="text-lg font-bold">Add Task</h2>
 
@@ -129,14 +129,14 @@ export default function TaskModal({ onClose, refresh }: any) {
           <button
             type="button"
             onClick={onClose}
-            className="px-3 py-1 text-gray-600"
+            className="px-4 py-2 text-gray-600"
           >
             Cancel
           </button>
 
           <button
             type="submit"
-            className="bg-blue-500 text-white px-3 py-1 rounded"
+            className="bg-blue-500 text-white px-4 py-2 rounded"
           >
             Create
           </button>

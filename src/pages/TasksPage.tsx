@@ -41,21 +41,21 @@ export default function TasksPage() {
           : "bg-white text-black"
         }`}
     >
-    <div className="max-w-7xl mx-auto px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-8">
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
-      <div className="mt-12 flex justify-between items-start">
+      <div className="mt-8 sm:mt-12 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
         <div>
-          <h1 className="text-5xl font-bold">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
             Tasks
           </h1>
-          <p className="mt-5 text-gray-500">
+          <p className="mt-3 sm:mt-5 text-sm sm:text-base text-gray-500">
             Manage your daily work efficiently.
           </p>
           </div>
           <DateSelector onChange={setSelectedDate} />
         </div>
-        <div className="mt-12">
+        <div className="mt-8 sm:mt-12">
           <KanbanBoard tasks={tasks} refresh={() => selectedDate ? fetchTasks(selectedDate) : fetchTasks()} />
         </div>
 
@@ -63,7 +63,7 @@ export default function TasksPage() {
         
         <button
           onClick={() => setShowModal(true)}
-          className="fixed bottom-10 right-10 h-16 w-16 rounded-full bg-yellow-300 text-4xl shadow-xl hover:scale-110 transition">
+          className="fixed bottom-5 right-5 sm:bottom-8 sm:right-8 lg:bottom-10 lg:right-10 h-14 w-14 sm:h-16 sm:w-16 rounded-full bg-yellow-300 text-3xl sm:text-4xl shadow-xl hover:scale-110 transition">
             +
           </button>
 

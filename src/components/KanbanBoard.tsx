@@ -30,7 +30,7 @@ export default function KanbanBoard({
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
-      <div className="flex flex-col gap-12 mt-6">
+      <div className="flex flex-col gap-8 sm:gap-10 lg:gap-12 mt-6">
         <Column
           title="To Do"
           status="todo"

@@ -22,7 +22,7 @@ export default function Column({
   return (
     <div ref={setNodeRef} className="w-full">
       {/* Column Title */}
-      <h2 className="text-2xl font-bold mb-6">{title} ({filtered.length})</h2>
+      <h2 className="text-xl sm:text-2xl font-bold mb-5">{title} ({filtered.length})</h2>
 
       {/* Empty State */}
       {filtered.length === 0 ? (
@@ -31,7 +31,7 @@ export default function Column({
           <p className="text-xs mt-1">Add a task to get started</p>
         </div>
       ) : (
-        <div className="flex gap-6 overflow-x-auto pb-4">
+        <div className="flex gap-4 sm:gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
           {filtered.map((task) => (
             <TaskCard
               key={task.id}

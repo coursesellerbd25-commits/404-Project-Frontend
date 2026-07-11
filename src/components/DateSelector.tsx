@@ -20,12 +20,12 @@ export default function DateSelector({ onChange }: Props) {
   };
 
   return (
-    <div className="w-80 overflow-hidden rounded-2xl border border-gray-300 bg-white shadow-sm">
+    <div className="w-full max-w-sm overflow-hidden rounded-2xl border border-gray-300 bg-white shadow-sm">
       {/* Header */}
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between px-5 py-4 text-left"
+        className="flex w-full items-center justify-between px-4 sm:px-5 py-3 sm:py-4 text-left"
       >
         <span className="font-medium text-black">
           📅{" "}
