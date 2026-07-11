@@ -20,7 +20,7 @@ export default function DateSelector({ onChange }: Props) {
   };
 
   return (
-    <div className="w-72 overflow-hidden rounded-2xl border border-gray-300 bg-white shadow-sm">
+    <div className="w-80 overflow-hidden rounded-2xl border border-gray-300 bg-white shadow-sm">
       {/* Header */}
       <button
         type="button"
