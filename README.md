@@ -8,9 +8,9 @@ This application provides a modern Kanban task management system with an image a
 
 # Live Demo
 
-Frontend: **(Add your deployed frontend URL here)**
+Frontend: **https://404-project-frontend.vercel.app/**
 
-Backend API: **(Add your deployed backend URL here)**
+Backend API: **https://four04-project-backend-1.onrender.com**
 
 ---
 
@@ -126,13 +126,13 @@ src/
 Clone the repository
 
 ```bash
-git clone <frontend-repository-url>
+git clone https://github.com/coursesellerbd25-commits/404-Project-Frontend
 ```
 
 Go to the project
 
 ```bash
-cd frontend
+cd 404-Project-Frontend
 ```
 
 Install dependencies
