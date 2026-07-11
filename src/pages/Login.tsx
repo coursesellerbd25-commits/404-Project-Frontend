@@ -136,9 +136,9 @@ const Login = () => {
               className="absolute right-4 sm:right-5 top-1/2 -translate-y-1/2"
             >
               {showPassword ? (
-                <Eye size="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
+                <Eye className="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
               ) : (
-                <EyeOff size="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
+                <EyeOff className="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
               )}
             </button>
 
