@@ -28,7 +28,7 @@ const Login = () => {
   };
 
   return (
-    <div className={`min-h-screen relative flex items-center justify-center px-4 transition-colors duration-300 ${
+    <div className={`min-h-screen overflow-y-auto relative flex items-center justify-center px-5 sm:px-6 lg:px-4 transition-colors duration-300 ${
       darkMode
       ? "bg-black text-white"
       : "bg-white text-black"
@@ -39,11 +39,11 @@ const Login = () => {
       <button
         type="button"
         onClick={() => setDarkMode(!darkMode)}
-        className={`absolute top-8 right-8 w-24 h-12 rounded-full border transition-all duration-300 ${
+        className={`absolute top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8 w-16 h-8 sm:w-20 sm:h-10 lg:w-24 lg:h-12 rounded-full border transition-all duration-300 ${
           darkMode ? "border-white" : "border-black"
           }`}
       >
-        <div className={`absolute top-1 w-10 h-10 rounded-full transition-all duration-300 ${
+        <div className={`absolute top-1 w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 rounded-full transition-all duration-300 ${
           darkMode
             ? "right-1 bg-white"
             : "left-1 bg-black"
@@ -51,24 +51,24 @@ const Login = () => {
         />
       </button>
 
-      <div className="w-full max-w-md text-center">
+      <div className="w-full max-w-sm sm:max-w-md text-center">
 
         {/* Logo */}
-        <h1 className="flex items-end justify-center text-6xl font-light tracking-wide">
+        <h1 className="flex items-end justify-center text-4xl sm:text-5xl lg:text-6xl font-light tracking-wide">
           <span>4</span>
             <span
-              className={`mx-1.5 relative -top-2 inline-block h-10 w-10 rounded-full ${
+              className={`mx-1.5 relative -top-2 inline-block h-7 w-7 sm:h-8 sm:w-8 lg:h-10 lg:w-10 rounded-full ${
                 darkMode ? "bg-white" : "bg-black"
               }`}
             />
           <span>4</span>
         </h1>
 
-        <h2 className="mt-8 text-4xl font-bold">
+        <h2 className="mt-6 sm:mt-8 text-3xl sm:text-4xl font-bold">
           Welcome Back
         </h2>
 
-        <p className={`mt-3 text-lg ${
+        <p className={`mt-3 text-base sm:text-lg px-2 ${
             darkMode ? "text-gray-300" : "text-gray-600"
           }`}
         >
@@ -77,7 +77,7 @@ const Login = () => {
 
         <form
           onSubmit={handleLogin}
-          className={`mt-10 rounded-3xl p-10 text-left transition-colors duration-300 ${
+          className={`mt-8 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-left transition-colors duration-300 ${
             darkMode
               ? "border border-white bg-black"
               : "border border-black bg-white"
@@ -86,7 +86,7 @@ const Login = () => {
 
           {/* Email */}
 
-          <label className={`block mb-2 text-lg ${
+          <label className={`block mb-2 text-base sm:text-lg ${
                   darkMode ? "text-white" : "text-black"
                 }`}
           >
@@ -99,7 +99,7 @@ const Login = () => {
             autoComplete="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className={`w-full rounded-xl px-5 py-4 text-lg outline-none mb-8 transition-colors ${
+            className={`w-full rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-base sm:text-lg outline-none mb-8 transition-colors ${
               darkMode
                 ? "bg-[#9EB2CF] text-white placeholder:text-gray-100"
                 : "bg-slate-300 text-black placeholder:text-white"
@@ -108,7 +108,7 @@ const Login = () => {
 
           {/* Password */}
 
-          <label className={`block mb-2 text-lg ${
+          <label className={`block mb-2 text-base sm:text-lg ${
                   darkMode ? "text-white" : "text-black"
                   }`}
           >
@@ -123,7 +123,7 @@ const Login = () => {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={`w-full rounded-xl px-5 py-4 text-lg outline-none transition-colors ${
+              className={`w-full rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-base sm:text-lg outline-none transition-colors ${
                 darkMode
                   ? "bg-[#9EB2CF] text-white placeholder:text-gray-100"
                   : "bg-slate-300 text-black placeholder:text-white"
@@ -133,12 +133,12 @@ const Login = () => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-5 top-1/2 -translate-y-1/2"
+              className="absolute right-4 sm:right-5 top-1/2 -translate-y-1/2"
             >
               {showPassword ? (
-                <Eye size={22} />
+                <Eye size="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
               ) : (
-                <EyeOff size={22} />
+                <EyeOff size="w-5 h-5 sm:w-[22px] sm:h-[22px]" />
               )}
             </button>
 
@@ -146,7 +146,7 @@ const Login = () => {
 
           <button
             type="button"
-            className={`mt-8 text-lg transition-colors ${
+            className={`mt-8 text-base sm:text-lg transition-colors ${
               darkMode
                 ? "text-white hover:text-gray-300"
                 : "text-black hover:text-gray-600"
@@ -157,12 +157,12 @@ const Login = () => {
 
           <button
             type="submit"
-            className="mt-8 w-full rounded-xl py-4 text-white text-xl font-medium bg-gradient-to-r from-cyan-400 to-teal-400 hover:opacity-90 transition"
+            className="mt-8 w-full rounded-xl py-3 sm:py-4 text-lg sm:text-xl font-medium text-white bg-gradient-to-r from-cyan-400 to-teal-400 hover:opacity-90 transition"
           >
             Login
           </button>
 
-          <p className={`text-center mt-10 ${
+          <p className={`text-center mt-8 sm:mt-10 text-sm sm:text-base ${
             darkMode ? "text-gray-400" : "text-gray-600"
           }`}
           >
