@@ -13,9 +13,11 @@ import {
 export default function KanbanBoard({
   tasks,
   refresh,
+  onEdit,
 }: {
   tasks: any[];
   refresh: () => void;
+  onEdit:(task:any)=>void;
 }) {
   const sensors = useSensors(
     useSensor(MouseSensor),
@@ -60,6 +62,7 @@ export default function KanbanBoard({
           status="todo"
           tasks={tasks}
           refresh={refresh}
+          onEdit={onEdit}
         />
 
         <Column
@@ -67,6 +70,7 @@ export default function KanbanBoard({
           status="in_progress"
           tasks={tasks}
           refresh={refresh}
+          onEdit={onEdit}
         />
 
         <Column
@@ -74,6 +78,7 @@ export default function KanbanBoard({
           status="done"
           tasks={tasks}
           refresh={refresh}
+          onEdit={onEdit}
         />
       </div>
       <DragOverlay>

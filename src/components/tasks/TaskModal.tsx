@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createTask } from "../../services/task";
+import { createTask, updateTask, } from "../../services/task";
 
 const schema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -12,13 +12,19 @@ const schema = z.object({
   tags: z.string(),
 });
 
-export default function TaskModal({ onClose, refresh }: any) {
+export default function TaskModal({ onClose, refresh, editingTask, }: any) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
+    defaultValues: editingTask
+    ? {
+        ...editingTask,
+        tags: editingTask.tags.join(", "),
+      }
+    : {},
   });
 
   const onSubmit = async (data: any) => {
@@ -33,7 +39,11 @@ export default function TaskModal({ onClose, refresh }: any) {
           : [],
       };
 
-      await createTask(payload);
+      if (editingTask) {
+        await updateTask(editingTask.id, payload);
+      } else {
+        await createTask(payload);
+      }
 
       refresh();
       onClose();
@@ -48,7 +58,7 @@ export default function TaskModal({ onClose, refresh }: any) {
         onSubmit={handleSubmit(onSubmit)}
         className="bg-white p-5 sm:p-6 rounded-lg w-full max-w-md space-y-3"
       >
-        <h2 className="text-lg font-bold">Add Task</h2>
+        <h2 className="text-lg font-bold">{editingTask ? "Edit Task" : "Add Task"}</h2>
 
         {/* Title */}
         <div>
@@ -138,7 +148,7 @@ export default function TaskModal({ onClose, refresh }: any) {
             type="submit"
             className="bg-blue-500 text-white px-4 py-2 rounded"
           >
-            Create
+            {editingTask ? "Save" : "Create"}
           </button>
         </div>
       </form>

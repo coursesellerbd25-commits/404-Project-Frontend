@@ -6,6 +6,7 @@ type ColumnProps = {
   status: string;
   tasks: any[];
   refresh: () => void;
+  onEdit:(task:any)=>void;
 };
 
 export default function Column({
@@ -13,6 +14,7 @@ export default function Column({
   status,
   tasks,
   refresh,
+  onEdit,
 }: ColumnProps) {
   const { setNodeRef } = useDroppable({
     id: status,
@@ -37,7 +39,7 @@ export default function Column({
               key={task.id}
               task={task}
               refresh={refresh}
-              onEdit={()=>{}}
+              onEdit={onEdit}
             />
           ))}
         </div>

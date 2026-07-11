@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import { useTaskStore } from "../store/useTaskStore";
 
 export default function TasksPage() {
+  const [editingTask, setEditingTask] = useState<any>(null);
   const [darkMode, setDarkMode] = useState(false);
   const {
     tasks,
@@ -56,7 +57,17 @@ export default function TasksPage() {
           <DateSelector onChange={setSelectedDate} />
         </div>
         <div className="mt-8 sm:mt-12">
-          <KanbanBoard tasks={tasks} refresh={() => selectedDate ? fetchTasks(selectedDate) : fetchTasks()} />
+          <KanbanBoard 
+            tasks={tasks} 
+            refresh={() => 
+              selectedDate 
+                ? fetchTasks(selectedDate) 
+                : fetchTasks()} 
+            onEdit={(task)=>{
+              setEditingTask(task);
+              setShowModal(true);
+            }}
+          />
         </div>
 
         <Footer darkMode={darkMode} />
@@ -69,7 +80,11 @@ export default function TasksPage() {
 
           {showModal && (
             <TaskModal
-              onClose={() => setShowModal(false)}
+              editingTask={editingTask}
+              onClose={() =>{ 
+                setShowModal(false);
+                setEditingTask(null);
+              }}
               refresh={() =>
               selectedDate ? fetchTasks(selectedDate) : fetchTasks()
               }
