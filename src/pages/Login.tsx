@@ -6,7 +6,7 @@ import { Eye, EyeOff } from "lucide-react";
 const Login = () => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +16,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const res = await loginUser(username, password);
+      const res = await loginUser(email, password);
 
       localStorage.setItem("access", res.access);
       localStorage.setItem("refresh", res.refresh);
@@ -97,8 +97,8 @@ const Login = () => {
             type="text"
             placeholder="example@email.com"
             autoComplete="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className={`w-full rounded-xl px-4 sm:px-5 py-3 sm:py-4 text-base sm:text-lg outline-none mb-8 transition-colors ${
               darkMode
                 ? "bg-[#9EB2CF] text-white placeholder:text-gray-100"
