@@ -141,17 +141,6 @@ export default function AnnotationPage() {
               ">
                 {image.filename}
               </span>
-
-
-              <span className="
-                absolute
-                bottom-4
-                right-5
-                text-sm
-                text-red-600
-              ">
-                Delete
-              </span>
               </div>
             </button>
 
