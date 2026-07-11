@@ -4,18 +4,14 @@ import { loginUser } from "../services/auth";
 import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
-  const navigate = useNavigate();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
+      setLoading(true);
+
       const res = await loginUser(email, password);
 
       localStorage.setItem("access", res.access);
@@ -23,9 +19,19 @@ const Login = () => {
 
       navigate("/tasks");
     } catch (err) {
-      console.error("Login failed", err);
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
+
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
     <div className={`min-h-screen overflow-y-auto relative flex items-center justify-center px-5 sm:px-6 lg:px-4 transition-colors duration-300 ${
@@ -157,9 +163,10 @@ const Login = () => {
 
           <button
             type="submit"
+            disabled={loading}
             className="mt-8 w-full rounded-xl py-3 sm:py-4 text-lg sm:text-xl font-medium text-white bg-gradient-to-r from-cyan-400 to-teal-400 hover:opacity-90 transition"
           >
-            Login
+            {loading ? "Signing in..." : "Login"}
           </button>
 
           <p className={`text-center mt-8 sm:mt-10 text-sm sm:text-base ${
