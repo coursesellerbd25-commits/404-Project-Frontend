@@ -35,6 +35,9 @@ export default function KanbanBoard({
     setActiveTask(null);
     if (!over) return;
 
+    console.log(active.id);
+    console.log(over);
+
     const taskId = active.id;
     const newStatus = over.id;
 
