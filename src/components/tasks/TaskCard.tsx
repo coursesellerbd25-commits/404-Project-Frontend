@@ -6,11 +6,13 @@ import {
 type TaskCardProps = {
   task: any;
   refresh: () => void;
+  onEdit: (task: any) => void;
 };
 
 export default function TaskCard({
   task,
   refresh,
+  onEdit,
 }: TaskCardProps) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: task.id,
@@ -36,8 +38,19 @@ export default function TaskCard({
       ref={setNodeRef}
       style={style}
       {...attributes}
-      {...listeners}
-      className="w-[260px] sm:w-72 min-h-[250px] flex flex-col justify-between flex-shrink-0 rounded-2xl bg-cyan-400 text-white p-4 sm:p-5 shadow-md hover:-translate-y-1 transition">
+      className="touch-none w-[260px] sm:w-72 min-h-[250px] flex flex-col justify-between flex-shrink-0 rounded-2xl bg-cyan-400 text-white p-4 sm:p-5 shadow-md hover:-translate-y-1 transition">
+      <div
+        {...listeners}
+        className="
+            cursor-grab
+            active:cursor-grabbing
+            mb-3
+           text-white/70
+          text-sm
+        "
+      >
+        ⋮⋮
+      </div>
 
       {/* Priority */}
       <span
@@ -91,13 +104,40 @@ export default function TaskCard({
       </div>
     </div>
 
+    {/* Buttons */}
+    {/* Edit Button */}
+    <div className="mt-6 flex gap-3">
+    <button
+          onClick={(e)=>{
+            e.stopPropagation();
+            onEdit(task);
+          }}
+          className="
+            rounded-lg
+            bg-white/20
+            px-4
+            py-2
+            text-xs
+            sm:text-sm
+            font-medium
+            hover:bg-white/30
+            transition
+          "
+        >
+          Edit
+        </button>
+
       {/* Delete Button */}
       <button
-        onClick={handleDelete}
-        className="mt-6 self-start text-xs sm:text-sm font-medium text-red-200 hover:text-white transition"
+        onClick={(e)=>{
+        e.stopPropagation();
+        handleDelete();
+        }}
+        className="self-start rounded-lg bg-red-500/20 px-4 py-2 text-xs sm:text-sm font-medium text-red-200 hover:text-white transition"
       >
         Delete
       </button>
+    </div>
     </div>
   );
 }

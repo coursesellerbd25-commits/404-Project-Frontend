@@ -82,6 +82,7 @@ export default function KanbanBoard({
             <TaskCard
               task={activeTask}
               refresh={refresh}
+              onEdit={()=>{}}
             />
           )
         }

@@ -20,7 +20,7 @@ export default function Column({
   const filtered = tasks.filter((task) => task.status === status);
 
   return (
-    <div ref={setNodeRef} className="w-full">
+    <div ref={setNodeRef} className="w-full min-h-[300px]">
       {/* Column Title */}
       <h2 className="text-xl sm:text-2xl font-bold mb-5">{title} ({filtered.length})</h2>
 
@@ -37,6 +37,7 @@ export default function Column({
               key={task.id}
               task={task}
               refresh={refresh}
+              onEdit={()=>{}}
             />
           ))}
         </div>
