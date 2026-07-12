@@ -32,7 +32,6 @@ https://four04-project-backend-1.onrender.com
 - Protected routes
 - Protected API requests
 - Token storage using Local Storage
-- Extended JWT session for demo purposes
 
 ---
 
