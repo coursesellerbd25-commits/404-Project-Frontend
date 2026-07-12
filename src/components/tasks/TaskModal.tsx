@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createTask, updateTask, } from "../../services/task";
@@ -13,6 +14,7 @@ const schema = z.object({
 });
 
 export default function TaskModal({ onClose, refresh, editingTask, }: any) {
+  const [saving, setSaving] = useState(false);
   const {
     register,
     handleSubmit,
@@ -29,6 +31,8 @@ export default function TaskModal({ onClose, refresh, editingTask, }: any) {
 
   const onSubmit = async (data: any) => {
     try {
+      setSaving(true);
+
       const payload = {
         ...data,
         tags: data.tags
@@ -49,6 +53,8 @@ export default function TaskModal({ onClose, refresh, editingTask, }: any) {
       onClose();
     } catch (err: any) {
       console.error(err.response?.data);
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -146,9 +152,20 @@ export default function TaskModal({ onClose, refresh, editingTask, }: any) {
 
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded"
+            disabled={saving}
+            className={`px-4 py-2 rounded text-white transition ${
+            saving
+              ? "bg-blue-300 cursor-not-allowed"
+              : "bg-blue-500 hover:bg-blue-600"
+            }`}
           >
-            {editingTask ? "Save" : "Create"}
+            {saving
+              ? editingTask
+              ? "Saving..."
+              : "Creating..."
+              : editingTask
+              ? "Save"
+              : "Create"}
           </button>
         </div>
       </form>
