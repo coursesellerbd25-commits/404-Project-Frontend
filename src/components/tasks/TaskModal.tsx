@@ -48,9 +48,9 @@ export default function TaskModal({ onClose, refresh, editingTask, }: any) {
       } else {
         await createTask(payload);
       }
-
-      refresh();
       onClose();
+      refresh();
+      
     } catch (err: any) {
       console.error(err.response?.data);
     } finally {
