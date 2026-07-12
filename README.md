@@ -2,7 +2,7 @@
 
 Frontend for the **404 Assessment**, built with **React, TypeScript, Vite, Tailwind CSS, Zustand, React Konva, and React Router**.
 
-This application provides a modern Kanban task management system with an image annotation module that allows users to upload images and draw polygon annotations.
+This application is a 2-in-1 productivity platform combining a Kanban task management system and an image annotation tool.
 
 ---
 
@@ -26,9 +26,13 @@ https://four04-project-backend-1.onrender.com
 
 ## Authentication
 
-- JWT Login
+- Email & Password authentication
+- JWT authentication
+- Extended JWT session for demo purposes
+- Protected routes
 - Protected API requests
 - Token storage using Local Storage
+- Extended JWT session for demo purposes
 
 ---
 
@@ -50,8 +54,8 @@ https://four04-project-backend-1.onrender.com
 
 - Upload images
 - Preview uploaded images
-- Image slider
-- Previous / Next navigation
+- Scrollable image gallery
+- Select image for annotation
 - Draw polygons
 - Save polygon annotations
 - Load saved polygons
@@ -88,6 +92,7 @@ https://four04-project-backend-1.onrender.com
 - React Konva
 - use-image
 - @dnd-kit/core
+- react-day-picker
 
 ---
 
@@ -161,7 +166,13 @@ Example:
 VITE_API_URL=http://127.0.0.1:8000/api
 ```
 
-For production, update it to your deployed backend API.
+---
+
+# Production
+
+ ```
+VITE_API_URL=https://four04-project-backend-1.onrender.com/api
+```
 
 ---
 
@@ -200,7 +211,7 @@ npm run preview
 | / | Redirects to login |
 | /login | User login |
 | /tasks | Kanban task board |
-| /annotations | Image annotation page |
+| /annotate | Image annotation page |
 
 ---
 
@@ -215,7 +226,7 @@ POST /api/login/
 
 GET /api/tasks/
 POST /api/tasks/
-PUT /api/tasks/:id/
+PATCH /api/tasks/:id/
 DELETE /api/tasks/:id/
 
 POST /api/annotations/upload/
@@ -264,6 +275,16 @@ Annotation Persists
 
 ---
 
+# Demo Account
+
+Email:
+admin@gmail.com
+
+Password:
+MyAdmin123!
+
+---
+
 # Challenges
 
 During development several technical challenges were encountered, including:
@@ -276,6 +297,10 @@ During development several technical challenges were encountered, including:
 - Persisting polygon annotations after page refresh
 - Filtering tasks dynamically by date
 - Managing image navigation with a slider
+- Implementing email-based JWT authentication
+- Building editable task modals
+- Synchronizing drag-and-drop updates with the backend
+- Uploading images to Cloudinary
 
 ---
 
@@ -290,6 +315,20 @@ These challenges were addressed by:
 - Using React Konva for interactive canvas rendering
 - Persisting annotations through backend APIs
 - Structuring components for maintainability and scalability
+- Customized SimpleJWT to authenticate using email instead of username
+- Used React Hook Form for reusable Create/Edit task forms
+- Integrated Cloudinary for persistent image storage
+
+---
+
+## Project Overview
+
+This application combines two modules:
+
+- A Kanban Task Management System with drag-and-drop support.
+- An Image Annotation Tool for uploading images and drawing polygon annotations.
+
+All task and annotation data is persisted through a Django REST backend using Django ORM, SQLite database, and Cloudinary for image storage.
 
 ---
 
@@ -315,10 +354,7 @@ Example versions used:
 
 # Deployment
 
-Frontend can be deployed using:
-
-- Vercel
-- Netlify
+Frontend is deployed on Vercel.
 
 Ensure the backend API URL is correctly configured in the environment variables before deployment.
 
@@ -330,8 +366,7 @@ Ensure the backend API URL is correctly configured in the environment variables 
 - Polygon labels
 - Undo/Redo support
 - Zoom and pan for canvas
-- Dark mode
-- Skeleton loaders
+- Automatic JWT token refresh
 - Toast notifications
 - User profiles
 - Search and filtering enhancements
